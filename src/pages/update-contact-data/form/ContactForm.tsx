@@ -19,8 +19,8 @@ const ContactForm: FC = () => {
         <Captcha />
       </div>
       <div className="contact-form__buttons">
-        <MeliButton />
-        <MeliButton />
+        <MeliButton text="Go back" variant="secondary" />
+        <MeliButton text="Next" />
       </div>
     </div>
   );
