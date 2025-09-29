@@ -1,0 +1,19 @@
+{
+  "pages": {
+    "update-contact-data": {
+      "info": {
+        "title": "Ya casi terminamos...",
+        "sub-title": "Actualiza tu información de contacto"
+      },
+      "inputs": {
+        "full-name": "Nombre completo",
+        "country": "País",
+        "address": "Dirección"
+      },
+      "buttons": {
+        "go-back": "Regresar",
+        "next": "Siguiente"
+      }
+    }
+  }
+}
