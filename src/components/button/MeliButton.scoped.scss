@@ -1,0 +1,16 @@
+@use "@assets/styles/variables" as *;
+
+.meli-button {
+  border: 1px solid $border-light;
+  border-radius: $spacing-sm;
+  padding: $spacing-md;
+  font-size: $font-size-md;
+  min-width: 200px;
+  cursor: pointer;
+
+  //* temp colors
+  background-color: $border-grey;
+  &:hover {
+    background-color: gainsboro;
+  }
+}

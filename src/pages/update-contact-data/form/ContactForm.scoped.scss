@@ -1,0 +1,36 @@
+@use "@assets/styles/variables" as *;
+@use "@assets/styles/mixins" as *;
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  min-width: fit-content;
+  width: 450px;
+  max-width: 500px;
+
+  //* Mobile Styles
+  @include mobile {
+    width: auto;
+  }
+
+  &__inputs {
+    display: flex;
+    flex-direction: column;
+
+    gap: $spacing-lg;
+  }
+  &__buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    @include mobile {
+      gap: $spacing-md;
+      flex-direction: column;
+    }
+  }
+  &__captcha {
+    display: flex;
+    justify-content: center;
+  }
+}

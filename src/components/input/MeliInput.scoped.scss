@@ -1,0 +1,38 @@
+@use "@assets/styles/variables" as *;
+
+.meli-input {
+  &__label {
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    color: $text-primary-color;
+  }
+
+  &__field {
+    width: 100%;
+    padding: 12px $spacing-md;
+    border: 1px solid $border-grey;
+    box-sizing: border-box;
+    border-radius: $border-radius-md;
+    font-size: $font-size-md;
+    transition: border-color 0.3s;
+
+    &:focus {
+      border-color: $primary-color;
+      box-shadow: 0 0 0 0.1em $border-primary;
+      outline: none;
+    }
+    &--error {
+      border-color: red;
+      &:focus {
+        border-color: red;
+        box-shadow: none;
+      }
+    }
+  }
+
+  &__error {
+    color: red;
+    font-size: $font-size-sm;
+    margin-top: 0.25rem;
+  }
+}

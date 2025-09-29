@@ -1,0 +1,24 @@
+// Import global variables and mixins
+@use './variables' as *;
+@use './mixins' as *;
+
+// Global reset and base styles
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  color: $text-color;
+  background-color: $background-color;
+  line-height: 1.6;
+}
+
+// Global utility classes
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 $spacing-md;
+}

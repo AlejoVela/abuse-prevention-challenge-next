@@ -1,0 +1,21 @@
+@use "@assets/styles/variables" as *;
+@use "@assets/styles/mixins" as *;
+
+.header {
+  box-sizing: border-box;
+  width: 100%;
+  padding: $spacing-sm $spacing-md;
+  background-color: $primary-color;
+  border-radius: $border-radius-md;
+  height: 60px;
+
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    &__logo {
+      height: 44px;
+      width: auto;
+    }
+  }
+}
