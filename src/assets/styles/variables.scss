@@ -12,8 +12,13 @@ $button-primary-text: #fff;
 $button-secondary-bg: rgba(65, 137, 230, .15);
 $button-secondary-text: #3483fa;
 
+// Button size
+$button-height-sm: 32px;
+$button-height-md: 45px;
+$button-height-lg: 48px;
+
 // Border colors
-$border-primary: #ffe600;
+$border-primary: #3483fa;
 $border-light: #e0e0e0;
 $border-grey: #ccc;
 $border-error: #f00;
@@ -49,3 +54,7 @@ $font-size-md: 16px;
 $font-size-lg: 20px;
 $font-size-xl: 24px;
 $font-size-xxl: 32px;
+
+// font color
+$font-color-primary: #212121;
+$font-color-placeholder: rgba(0,0,0,.25);

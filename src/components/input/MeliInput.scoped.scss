@@ -14,11 +14,16 @@
     box-sizing: border-box;
     border-radius: $border-radius-md;
     font-size: $font-size-md;
-    transition: border-color 0.3s;
+
+    &::placeholder {
+      color: $font-color-placeholder;
+      font-family: "Proxima Nova", -apple-system, Roboto, Arial, sans-serif,
+        sans-serif;
+    }
 
     &:focus {
-      border-color: $primary-color;
-      box-shadow: 0 0 0 0.1em $border-primary;
+      border-color: $border-primary;
+      box-shadow: 0 0 0 0.125em $border-primary;
       outline: none;
     }
     &--error {

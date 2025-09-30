@@ -6,6 +6,8 @@
         "sub-title": "Actualiza tu información de contacto"
       },
       "inputs": {
+        "search": "Buscar",
+        "no-results": "No hay resultados",
         "full-name": "Nombre completo",
         "country": "País",
         "address": "Dirección"

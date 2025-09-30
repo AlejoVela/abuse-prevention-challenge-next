@@ -1,0 +1,119 @@
+@use "@/assets/styles/variables.scss" as *;
+
+.meli-autocomplete {
+  position: relative;
+  width: 100%;
+  &__button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: $button-height-md;
+    padding: 12px $spacing-md;
+    border-radius: $border-radius-md;
+    border: 1px solid $border-grey;
+    background: none;
+    color: $font-color-placeholder;
+    font-family: "Proxima Nova", -apple-system, Roboto, Arial, sans-serif,
+      sans-serif;
+    cursor: pointer;
+    font-size: $font-size-md;
+
+    &:focus {
+      border-color: $border-primary;
+      box-shadow: 0 0 0 0.125em $border-primary;
+      outline: none;
+    }
+
+    &--value {
+      color: $font-color-primary;
+      font-weight: $font-weight-regular;
+    }
+  }
+
+  &__dropdown {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    margin-top: 3px;
+    width: 100%;
+    max-height: calc(58px + 3 * $button-height-md);
+    overflow-y: auto;
+    background-color: #fff;
+    border: 1px solid $border-grey;
+    border-radius: $border-radius-md;
+    z-index: 10;
+
+    &-option {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      height: $button-height-md;
+      min-height: $button-height-md;
+      padding: $spacing-sm $spacing-md;
+      cursor: pointer;
+      border-radius: $border-radius-sm;
+      border: none;
+      background-color: transparent;
+      font-weight: $font-weight-regular;
+      font-size: $font-size-md;
+      color: $font-color-primary;
+      box-sizing: border-box;
+
+      &:hover {
+        border-left: 1px solid $border-primary;
+        background-color: #f5f5f5;
+      }
+    }
+
+    &-no-options {
+      box-sizing: border-box;
+      height: $button-height-md;
+      padding: $spacing-sm $spacing-md;
+      color: $text-secondary-color;
+      font-size: $font-size-md;
+    }
+
+    &-input {
+      width: 100%;
+      padding: 12px $spacing-md;
+      border: none;
+      box-sizing: border-box;
+      touch-action: cross-slide-y;
+
+      &-search {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        box-sizing: border-box;
+        font-size: $font-size-md;
+        border-radius: $border-radius-xl;
+        box-shadow: 0 0 0 0.1em $border-primary;
+        padding: $spacing-sm $spacing-sm;
+
+        &-icon {
+          width: 16px;
+          height: 16px;
+          margin-right: $spacing-xs;
+          flex-shrink: 0;
+          background-color: transparent;
+        }
+
+        &-field {
+          width: 100%;
+          border: none;
+          &::placeholder {
+            font-size: $font-size-sm;
+            color: $font-color-placeholder;
+            font-family: "Proxima Nova", -apple-system, Roboto, Arial,
+              sans-serif, sans-serif;
+          }
+
+          &:focus {
+            outline: none;
+          }
+        }
+      }
+    }
+  }
+}

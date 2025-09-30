@@ -6,6 +6,8 @@
         "sub-title": "Update your contact information"
       },
       "inputs": {
+        "search": "Search",
+        "no-results": "No results",
         "full-name": "Full Name",
         "country": "Country",
         "address": "Address"
