@@ -1,9 +1,0 @@
-{
-  "framework": "nextjs",
-  "rewrites": [
-    {
-      "source": "/",
-      "destination": "/es-AR/purchase/update-contact-data"
-    }
-  ]
-}
