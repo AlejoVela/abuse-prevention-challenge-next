@@ -1,22 +1,20 @@
-import { Metadata } from "next";
+import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'MercadoLibre',
-  description: 'Abuse Prevention Challenge',
+  title: 'Abuse Prevention Challenge',
+  description: 'Contact form with validation and i18n',
 }
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
-    <>
-      <html lang="en">
-        <body>
-          <div id="root">{children}</div>:
-        </body>
-      </html>
-    </>
-  );
+    <html>
+      <body>
+        {children}
+      </body>
+    </html>
+  )
 }

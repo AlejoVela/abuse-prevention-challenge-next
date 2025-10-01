@@ -1,7 +1,6 @@
 import path from 'path';
 
 const nextConfig = {
-  output: "export",
   distDir: "./dist",
   webpack: (config) => {
     config.resolve.alias = {
@@ -9,8 +8,7 @@ const nextConfig = {
       '@': path.resolve('./src'),
       '@/app': path.resolve('./src/app'),
       '@assets': path.resolve('./src/assets'),
-      '@public': path.resolve('./src/public'),
-      '@typings': path.resolve('./src/typings'),
+      '@public': path.resolve('./public'),
       '@components': path.resolve('./src/components'),
       '@pages': path.resolve('./src/app'),
       '@services': path.resolve('./src/services'),
