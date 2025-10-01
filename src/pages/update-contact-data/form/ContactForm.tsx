@@ -9,8 +9,8 @@ import {
   actionsContactStore,
   useContactStore,
 } from "@/services/store/useContactStore";
-import { useNavigate } from "react-router-dom";
 import { useContactFormValidation } from "@/hooks/useContactFormValidation";
+import { useRouter } from 'next/compat/router'
 
 const Captcha = lazy(() => import("@components/captcha/Captcha"));
 
@@ -40,7 +40,7 @@ const ContactForm: FC = () => {
   const contactData = useContactStore((state) => state.contactData);
 
   //* Navigation
-  const navigate = useNavigate();
+  const router = useRouter();
 
   //* Effects
   useEffect(() => {
@@ -82,7 +82,7 @@ const ContactForm: FC = () => {
 
       await actionsContactStore.updateContactData(contactData);
 
-      navigate("/finish-purchase");
+      router?.replace("/purchase/finish-purchase");
     } catch (error) {
       console.error("Error updating contact data:", error);
       setGeneralError(t("errors.general.submit-error"));

@@ -1,8 +1,8 @@
 import Header from "@/components/header/Header";
 import { useEffect, type FC } from "react";
 import "./FinishPurchase.scoped.scss";
-import { useNavigate } from "react-router-dom";
 import MeliButton from "@/components/button/MeliButton";
+import { useRouter } from "next/compat/router";
 import {
   actionsContactStore,
   useContactStore,
@@ -11,7 +11,7 @@ import { useTranslation } from "react-i18next";
 
 const FinishPurchase: FC = () => {
   //* Navigation
-  const navigate = useNavigate();
+  const router = useRouter();
 
   //* Translation
   const { t } = useTranslation(["translation"], {
@@ -44,7 +44,9 @@ const FinishPurchase: FC = () => {
               <p className="card-summary__content-text">
                 {contactData.fullname}
               </p>
-              <p className="card-summary__content-text">{t("billing.id", { id: "123456" })}</p>
+              <p className="card-summary__content-text">
+                {t("billing.id", { id: "123456" })}
+              </p>
             </div>
           </div>
           <p className="cards__title2">{t("delivery.title")}</p>
@@ -64,7 +66,9 @@ const FinishPurchase: FC = () => {
                 {t("delivery.home-delivery")}{" "}
                 <a
                   className="card-summary__content-link"
-                  onClick={() => navigate("/update-contact-data")}
+                  onClick={() => {
+                    router?.replace("/update-contact-data");
+                  }}
                 >
                   {t("delivery.modify-delivery")}
                 </a>
@@ -80,10 +84,14 @@ const FinishPurchase: FC = () => {
               />
             </div>
             <div className="card-summary__content">
-              <p className="card-summary__content-text">{t("payment.bank-card", { bank: "xx", lastDigits: "2160" })}</p>
+              <p className="card-summary__content-text">
+                {t("payment.bank-card", { bank: "xx", lastDigits: "2160" })}
+              </p>
               <p className="card-summary__content-text">
                 {t("payment.installments", { quantity: "1", amount: "55.831" })}{" "}
-                <a className="card-summary__content-link">{t("payment.modify-installments")}</a>
+                <a className="card-summary__content-link">
+                  {t("payment.modify-installments")}
+                </a>
               </p>
             </div>
           </div>
@@ -111,7 +119,12 @@ const FinishPurchase: FC = () => {
           <div className="amount-summary__section">
             <p className="amount-summary__section-text--bold amount-summary__section-text">
               <span>{t("summary.total")}</span>
-              <span>{t("summary.total-installments", { quantity: "1", amount: "55.831" })}</span>
+              <span>
+                {t("summary.total-installments", {
+                  quantity: "1",
+                  amount: "55.831",
+                })}
+              </span>
             </p>
             <p className="amount-summary__section-text--bold amount-summary__section-subtext">
               {t("summary.bank-info", { bank: "xx", lastDigits: "2160" })}

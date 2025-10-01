@@ -1,0 +1,76 @@
+{
+  "pages": {
+    "update-contact-data": {
+      "info": {
+        "title": "Estamos quase lá...",
+        "sub-title": "Atualize suas informações de contato"
+      },
+      "inputs": {
+        "search": "Pesquisar",
+        "no-results": "Não há resultados",
+        "full-name": "Nome completo",
+        "country": "País",
+        "address": "Endereço"
+      },
+      "buttons": {
+        "go-back": "Retornar",
+        "next": "Próximo"
+      },
+      "errors": {
+        "fullname": {
+          "required": "Nome completo é obrigatório",
+          "min": "O nome deve ter pelo menos 2 caracteres",
+          "max": "O nome não pode exceder 100 caracteres"
+        },
+        "country": {
+          "required": "País é obrigatório"
+        },
+        "address": {
+          "required": "Endereço é obrigatório",
+          "min": "O endereço deve ter pelo menos 5 caracteres",
+          "max": "O endereço não pode exceder 200 caracteres"
+        },
+        "captcha": {
+          "required": "Por favor, complete o captcha para continuar",
+          "error": "Erro ao carregar o captcha. Por favor, recarregue a página e tente novamente."
+        },
+        "general": {
+          "submit-error": "Ocorreu um erro ao atualizar os dados. Por favor, tente novamente.",
+          "validation-error": "Erro de validação inesperado"
+        }
+      }
+    },
+    "finish-purchase": {
+      "review": {
+        "title": "Revisar e confirmar"
+      },
+      "billing": {
+        "title": "Faturamento",
+        "id": "ID {{id}}"
+      },
+      "delivery": {
+        "title": "Detalhes da entrega",
+        "home-delivery": "Entrega em domicílio",
+        "modify-delivery": "Modificar forma de entrega"
+      },
+      "payment": {
+        "title": "Detalhes do pagamento",
+        "bank-card": "Banco {{bank}}. **** {{lastDigits}}",
+        "installments": "{{quantity}} x $ {{amount}}",
+        "modify-installments": "Modificar parcelas"
+      },
+      "summary": {
+        "title": "Resumo da compra",
+        "product": "Produto",
+        "shipping": "Envio",
+        "subtotal": "Subtotal",
+        "total": "Você paga",
+        "total-installments": "{{quantity}}x $ {{amount}}",
+        "bank-info": "Banco {{bank}}. **** {{lastDigits}}"
+      },
+      "buttons": {
+        "confirm-purchase": "Confirmar compra"
+      }
+    }
+  }
+}

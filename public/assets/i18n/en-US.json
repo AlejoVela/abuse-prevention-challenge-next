@@ -1,0 +1,76 @@
+{
+  "pages": {
+    "update-contact-data": {
+      "info": {
+        "title": "We're almost there...",
+        "sub-title": "Update your contact information"
+      },
+      "inputs": {
+        "search": "Search",
+        "no-results": "No results",
+        "full-name": "Full Name",
+        "country": "Country",
+        "address": "Address"
+      },
+      "buttons": {
+        "go-back": "Go Back",
+        "next": "Next"
+      },
+      "errors": {
+        "fullname": {
+          "required": "Full name is required",
+          "min": "Full name must be at least 2 characters",
+          "max": "Full name cannot exceed 100 characters"
+        },
+        "country": {
+          "required": "Country is required"
+        },
+        "address": {
+          "required": "Address is required",
+          "min": "Address must be at least 5 characters",
+          "max": "Address cannot exceed 200 characters"
+        },
+        "captcha": {
+          "required": "Please complete the captcha to continue",
+          "error": "Error loading captcha. Please reload the page and try again."
+        },
+        "general": {
+          "submit-error": "An error occurred while updating the data. Please try again.",
+          "validation-error": "Unexpected validation error"
+        }
+      }
+    },
+    "finish-purchase": {
+      "review": {
+        "title": "Review and confirm"
+      },
+      "billing": {
+        "title": "Billing",
+        "id": "ID {{id}}"
+      },
+      "delivery": {
+        "title": "Delivery details",
+        "home-delivery": "Home delivery",
+        "modify-delivery": "Modify delivery method"
+      },
+      "payment": {
+        "title": "Payment details",
+        "bank-card": "{{bank}} Bank. **** {{lastDigits}}",
+        "installments": "{{quantity}} x $ {{amount}}",
+        "modify-installments": "Modify installments"
+      },
+      "summary": {
+        "title": "Purchase summary",
+        "product": "Product",
+        "shipping": "Shipping",
+        "subtotal": "Subtotal",
+        "total": "You pay",
+        "total-installments": "{{quantity}}x $ {{amount}}",
+        "bank-info": "{{bank}} Bank. **** {{lastDigits}}"
+      },
+      "buttons": {
+        "confirm-purchase": "Confirm purchase"
+      }
+    }
+  }
+}

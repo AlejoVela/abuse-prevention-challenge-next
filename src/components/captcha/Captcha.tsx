@@ -7,7 +7,7 @@ interface CaptchaProps {
 }
 
 const Captcha: FC<CaptchaProps> = ({ onChange, onError }) => {
-  const siteKey = import.meta.env.VITE_CAPTCHA_SITE_KEY;
+  const siteKey = process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY;
 
   const handleCaptcha = (value: string | null) => {
     console.log("Captcha value:", value);
@@ -20,7 +20,7 @@ const Captcha: FC<CaptchaProps> = ({ onChange, onError }) => {
   };
 
   if (!siteKey) {
-    console.error("VITE_CAPTCHA_SITE_KEY no está definida en las variables de entorno");
+    console.error("NEXT_PUBLIC_CAPTCHA_SITE_KEY no está definida en las variables de entorno");
     return <div>Error: Clave de reCAPTCHA no configurada</div>;
   }
 

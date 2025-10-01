@@ -1,6 +1,6 @@
 import { useState, type FC } from "react";
 import "./MeliAutocomplete.scoped.scss";
-import { SearchIcon } from "@/assets/svg";
+import { SearchIcon } from "../../../public/assets/svg/search-icon.svg";
 
 interface AutocompleteOption {
   label: string;
@@ -62,7 +62,7 @@ const MeliAutocomplete: FC<MeliAutocompleteProps> = ({
           <div className="meli-autocomplete__dropdown-input">
             <div className="meli-autocomplete__dropdown-input-search">
               <img
-                src={SearchIcon}
+                src={SearchIcon.src}
                 alt="Search"
                 className="meli-autocomplete__dropdown-input-search-icon"
               />

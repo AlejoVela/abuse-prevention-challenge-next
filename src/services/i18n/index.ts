@@ -6,13 +6,13 @@ import esAR from '@assets/i18n/es-AR.json';
 import enUS from '@assets/i18n/en-US.json';
 import br from '@assets/i18n/br.json';
 
-const LANG = import.meta.env.VITE_LANG || 'es-AR';
+const LANG = process.env.NEXT_PUBLIC_LANG || 'es-AR';
 
 i18n
 	.use(LanguageDetector)
 	.use(initReactI18next)
 	.init({
-		debug: import.meta.env.MODE === 'development',
+		debug: process.env.MODE === 'development',
 		fallbackLng: LANG,
 		interpolation: {
 			escapeValue: false,
