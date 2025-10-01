@@ -13,7 +13,7 @@ const MeliButton: FC<MeliButtonProps> = ({
   onClick,
 }) => {
   return (
-    <button className={`meli-button meli-button--${variant}`} onClick={onClick}>
+    <button type="button" className={`meli-button meli-button--${variant}`} onClick={onClick}>
       {text}
     </button>
   );

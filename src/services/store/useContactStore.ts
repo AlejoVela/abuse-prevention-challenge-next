@@ -68,5 +68,18 @@ export const actionsContactStore = {
         country: { id: country.value, name: country.label },
       },
     });
-  }
+  },
+  updateContactData: async (contactData: ContactData) => {
+    const { updateContactData } = MeliUsersService();
+    const defaultUserId = useContactStore.getState().defaultUserId;
+    try {
+      await updateContactData(defaultUserId, {
+        fullname: contactData.fullname,
+        address: contactData.address,
+        country: contactData.country,
+      });
+    } catch (error) {
+      console.error("Error updating contact data:", error);
+    }
+  },
 };

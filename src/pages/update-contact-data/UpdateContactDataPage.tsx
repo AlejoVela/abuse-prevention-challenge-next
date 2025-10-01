@@ -1,13 +1,13 @@
 import type { FC } from "react";
 import "./UpdateContactDataPage.scoped.scss";
-import Header from "./header/Header";
+import Header from "@/components/header/Header";
 import ContactForm from "./form/ContactForm";
 import { useTranslation } from "react-i18next";
 
 const UpdateContactDataPage: FC = () => {
   const { t } = useTranslation(["translation"], {
     keyPrefix: "pages.update-contact-data",
-  });
+  });  
   return (
     <div className="update-contact-data-page">
       <Header />

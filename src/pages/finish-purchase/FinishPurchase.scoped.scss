@@ -1,0 +1,162 @@
+@use "@/assets/styles/variables" as *;
+@use "@/assets/styles/mixins" as *;
+
+.finish-purchase {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  box-sizing: border-box;
+  padding-top: $spacing-md;
+  padding-inline: $spacing-md;
+  gap: 5%;
+  background-color: #ebebeb;
+
+  @include mobile {
+    box-sizing: border-box;
+    height: 100%;
+  }
+
+  .finish-purchase__container {
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    width: 100%;
+    height: 100vh;
+    max-width: 1000px;
+    gap: $spacing-lg;
+
+    @include mobile {
+      flex-direction: column;
+      margin-top: $spacing-md;
+      gap: $spacing-lg;
+      box-sizing: border-box;
+      height: 100%;
+      padding-bottom: $spacing-lg;
+    }
+
+    .cards {
+      display: flex;
+      flex-direction: column;
+      gap: $spacing-md;
+      width: 60%;
+      @include mobile {
+        width: 100%;
+      }
+
+      &__title {
+        font-size: $font-size-xl;
+        font-weight: $font-weight-bold;
+        color: $font-color-primary;
+        margin-bottom: 5px;
+        margin: 0;
+      }
+
+      &__title2 {
+        font-size: $font-size-md;
+        font-weight: $font-weight-medium;
+        color: $font-color-primary;
+        margin: 0;
+      }
+
+      .card-summary {
+        display: flex;
+        flex-direction: row;
+        align-items: start;
+        box-sizing: border-box;
+        gap: $spacing-md;
+        width: 100%;
+        background-color: $background-color-grey;
+        padding: $spacing-md;
+        border-radius: $border-radius-md;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding-left: $spacing-lg;
+
+        &__image {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 40px;
+          height: 40px;
+          border-radius: $border-radius-xl;
+          background-color: $background-color;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        &__content {
+          display: flex;
+          flex-direction: column;
+          gap: $spacing-sm;
+          &-link {
+            text-decoration: none;
+            color: $button-primary-bg;
+            font-weight: 600;
+            cursor: pointer;
+          }
+          &-text {
+            @include mobile {
+              display: flex;
+              flex-direction: column;
+            }
+            margin: 0;
+            &:first-child {
+              font-weight: 600;
+            }
+            &:nth-child(2) {
+              font-size: $font-size-sm;
+            }
+          }
+        }
+      }
+    }
+
+    .amount-summary {
+      display: flex;
+      flex-direction: column;
+      box-sizing: border-box;
+      width: 40%;
+      height: auto;
+      background-color: $background-color;
+      border-radius: $border-radius-md;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      @include mobile {
+        width: 100%;
+        height: auto;
+      }
+      &__section {
+        display: flex;
+        flex-direction: column;
+        box-sizing: border-box;
+        font-size: $font-size-md;
+        color: $font-color-primary;
+        padding: $spacing-md $spacing-lg;
+        border-bottom: 1px solid $border-light;
+        gap: $spacing-sm;
+        &:last-child {
+          border-bottom: none;
+        }
+        &:first-child {
+          font-weight: 600;
+        }
+        &-text {
+          display: flex;
+          justify-content: space-between;
+          margin: 0;
+          flex-wrap: wrap;
+
+          &--bold {
+            font-weight: 600;
+            font-size: $font-size-lg;
+          }
+        }
+        &-subtext {
+          display: flex;
+          justify-content: end;
+          font-size: $font-size-sm;
+          color: $text-secondary-color;
+          margin: 0;
+        }
+      }
+    }
+  }
+}

@@ -1,4 +1,5 @@
 @use "@assets/styles/variables" as *;
+@use "@assets/styles/mixins" as *;
 
 .meli-button {
   border: 1px solid $border-light;
@@ -7,6 +8,11 @@
   font-size: $font-size-md;
   min-width: 200px;
   cursor: pointer;
+
+  @include tablet {
+    width: 100%;
+    min-width: auto;
+  }
 
   //* temp colors
   background-color: $border-grey;
