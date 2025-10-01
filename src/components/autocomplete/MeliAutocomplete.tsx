@@ -55,7 +55,7 @@ const MeliAutocomplete: FC<MeliAutocompleteProps> = ({
         }`}
         type="button"
       >
-        {value?.label ?? placeholder}
+        {value?.label && value?.label !== "" ? value.label : placeholder}
       </button>
       {isFocused && (
         <div className="meli-autocomplete__dropdown">
