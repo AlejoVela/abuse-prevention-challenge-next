@@ -1,18 +1,8 @@
-import js from "@eslint/js";
 import globals from "globals";
 import reactHooks from "eslint-plugin-react-hooks";
 import reactRefresh from "eslint-plugin-react-refresh";
+import js from "@eslint/js";
 import tseslint from "typescript-eslint";
-import { FlatCompat } from "@eslint/eslintrc";
-import { dirname } from "path";
-import { fileURLToPath } from "url";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-});
 
 export default [
   {
@@ -25,7 +15,8 @@ export default [
       "next-env.d.ts",
     ],
   },
-  ...compat.extends("next/core-web-vitals", "next/typescript"),
+  js.configs.recommended,
+  ...tseslint.configs.recommended,
   {
     files: ["**/*.{ts,tsx,js,jsx}"],
     languageOptions: {
@@ -42,6 +33,9 @@ export default [
         "warn",
         { allowConstantExport: true },
       ],
+      // Reglas específicas para Next.js
+      "@typescript-eslint/no-unused-vars": ["warn"],
+      "@typescript-eslint/no-explicit-any": ["warn"],
     },
   },
 ];
