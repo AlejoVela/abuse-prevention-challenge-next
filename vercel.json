@@ -1,35 +1,9 @@
 {
-  "buildCommand": "next build",
-  "devCommand": "next dev",
-  "installCommand": "npm install",
   "framework": "nextjs",
   "rewrites": [
     {
       "source": "/",
       "destination": "/es-AR/purchase/update-contact-data"
-    },
-    {
-      "source": "/((?!api|_next|_static|favicon.ico|assets).*)",
-      "destination": "/es-AR/$1"
-    }
-  ],
-  "headers": [
-    {
-      "source": "/(.*)",
-      "headers": [
-        {
-          "key": "X-Content-Type-Options",
-          "value": "nosniff"
-        },
-        {
-          "key": "X-Frame-Options",
-          "value": "DENY"
-        },
-        {
-          "key": "X-XSS-Protection",
-          "value": "1; mode=block"
-        }
-      ]
     }
   ]
 }
