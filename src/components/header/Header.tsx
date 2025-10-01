@@ -1,12 +1,12 @@
 import type { FC } from "react"
-import './Header.scoped.scss'
+import style from './Header.module.scss'
 import logo from "../../../public/assets/img/logo.png"
 
 const Header: FC = () => {
   return (
-    <header className="header">
-      <nav className="nav">
-        <img className="nav__logo" src={logo.src} alt="Logo" />
+    <header className={style["header"]}>
+      <nav className={style["nav"]}>
+        <img className={style["nav__logo"]} src={logo.src} alt="Logo" />
       </nav>
     </header>
   )

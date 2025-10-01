@@ -1,6 +1,18 @@
+* {
+  font-family: "Proxima Nova", -apple-system, Roboto, Arial, sans-serif;
+}
+
 body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Proxima Nova', -apple-system, Roboto, Arial, sans-serif;
+  font-family: "Proxima Nova", -apple-system, Roboto, Arial, sans-serif;
+}
+
+html {
+  font-family: "Proxima Nova", -apple-system, Roboto, Arial, sans-serif;
+}
+
+:root {
+  --font-proxima-nova: "Proxima Nova", -apple-system, Roboto, Arial, sans-serif;
 }

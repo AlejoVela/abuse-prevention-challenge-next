@@ -1,5 +1,5 @@
 import type { FC } from "react";
-import "./MeliInput.scoped.scss";
+import style from "./MeliInput.module.scss";
 
 interface MeliInputProps {
   placeholder?: string;
@@ -9,17 +9,17 @@ interface MeliInputProps {
 }
 const MeliInput: FC<MeliInputProps> = ({ placeholder, error, value, onChange }) => {
   return (
-    <div className="meli-input">
+    <div className={style["meli-input"]}>
       <input
         type="text"
         value={value}
         onChange={(e) => onChange?.(e.target.value)}
-        className={`meli-input__field ${
-          error ? "meli-input__field--error" : ""
+        className={`${style["meli-input__field"]} ${
+          error ? style["meli-input__field--error"] : ""
         }`}
         placeholder={placeholder}
       />
-      {error && <div className="meli-input__error">{error}</div>}
+      {error && <div className={style["meli-input__error"]}>{error}</div>}
     </div>
   );
 };

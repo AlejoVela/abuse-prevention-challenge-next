@@ -1,21 +1,22 @@
-'use client'
+"use client";
 
-import { useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
-export default function HomePage({ params }: { params: Promise<{ locale: string }> }) {
-  const router = useRouter()
-  const [locale, setLocale] = useState<string>('')
-
+export default function HomePage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const router = useRouter();
   useEffect(() => {
     const getParams = async () => {
-      const resolvedParams = await params
-      setLocale(resolvedParams.locale)
-      router.replace(`/${resolvedParams.locale}/purchase/update-contact-data`)
-    }
-    
-    getParams()
-  }, [router, params])
+      const resolvedParams = await params;
+      router.replace(`/${resolvedParams.locale}/purchase/update-contact-data`);
+    };
 
-  return null
+    getParams();
+  }, [router, params]);
+
+  return null;
 }

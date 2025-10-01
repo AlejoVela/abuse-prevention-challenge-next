@@ -1,5 +1,5 @@
-import { lazy, useEffect, type FC } from "react";
-import "./ContactForm.scoped.scss";
+import { useEffect, type FC } from "react";
+import style from "./ContactForm.module.scss";
 import MeliInput from "@/components/input/MeliInput";
 import MeliButton from "@/components/button/MeliButton";
 import { useTranslation } from "react-i18next";
@@ -11,8 +11,8 @@ import {
 } from "@/services/store/useContactStore";
 import { useContactFormValidation } from "@/hooks/useContactFormValidation";
 import { useRouter, useParams } from 'next/navigation'
+import Captcha from '@components/captcha/Captcha';
 
-const Captcha = lazy(() => import("@components/captcha/Captcha"));
 
 const ContactForm: FC = () => {
   //* translations
@@ -98,26 +98,26 @@ const ContactForm: FC = () => {
   };
 
   return (
-    <form className="contact-form" onSubmit={handleSubmit}>
+    <form className={style["contact-form"]} onSubmit={handleSubmit}>
       {validationErrors.general && (
-        <div className="contact-form__error contact-form__error--general">
+        <div className={`${style["contact-form__error"]} ${style["contact-form__error--general"]}`}>
           {validationErrors.general}
         </div>
       )}
-      <div className="contact-form__inputs">
-        <div className="contact-form__input-group">
+      <div className={style["contact-form__inputs"]}>
+        <div className={style["contact-form__input-group"]}>
           <MeliInput
             value={contactData.fullname}
             onChange={handleFullnameChange}
             placeholder={t("inputs.full-name")}
           />
           {validationErrors.fullname && (
-            <div className="contact-form__error">
+            <div className={style["contact-form__error"]}>
               {validationErrors.fullname}
             </div>
           )}
         </div>
-        <div className="contact-form__input-group">
+        <div className={style["contact-form__input-group"]}>
           <MeliAutocomplete
             value={{
               label: contactData?.country.name,
@@ -130,31 +130,31 @@ const ContactForm: FC = () => {
             options={countries}
           />
           {validationErrors.country && (
-            <div className="contact-form__error">
+            <div className={style["contact-form__error"]}>
               {validationErrors.country}
             </div>
           )}
         </div>
-        <div className="contact-form__input-group">
+        <div className={style["contact-form__input-group"]}>
           <MeliInput
             value={contactData.address}
             onChange={handleAddressChange}
             placeholder={t("inputs.address")}
           />
           {validationErrors.address && (
-            <div className="contact-form__error">
+            <div className={style["contact-form__error"]}>
               {validationErrors.address}
             </div>
           )}
         </div>
       </div>
-      <div className="contact-form__captcha">
+      <div className={style["contact-form__captcha"]}>
         <Captcha onChange={handleCaptchaChange} onError={handleCaptchaError} />
         {validationErrors.captcha && (
-          <div className="contact-form__error">{validationErrors.captcha}</div>
+          <div className={style["contact-form__error"]}>{validationErrors.captcha}</div>
         )}
       </div>
-      <div className="contact-form__buttons">
+      <div className={style["contact-form__buttons"]}>
         <MeliButton
           onClick={handleGoBack}
           text={t("buttons.go-back")}

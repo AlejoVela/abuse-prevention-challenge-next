@@ -1,5 +1,5 @@
 import type { FC } from "react";
-import "./MeliButton.scoped.scss";
+import style from "./MeliButton.module.scss";
 
 interface MeliButtonProps {
   text: string;
@@ -13,7 +13,7 @@ const MeliButton: FC<MeliButtonProps> = ({
   onClick,
 }) => {
   return (
-    <button type="button" className={`meli-button meli-button--${variant}`} onClick={onClick}>
+    <button type="button" className={`${style["meli-button"]} ${style[`meli-button--${variant}`]}`} onClick={onClick}>
       {text}
     </button>
   );

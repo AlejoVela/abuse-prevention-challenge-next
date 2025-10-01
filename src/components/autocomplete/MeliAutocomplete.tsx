@@ -1,5 +1,5 @@
 import { useState, type FC } from "react";
-import "./MeliAutocomplete.scoped.scss";
+import style from "./MeliAutocomplete.module.scss";
 
 interface AutocompleteOption {
   label: string;
@@ -46,29 +46,29 @@ const MeliAutocomplete: FC<MeliAutocompleteProps> = ({
   };
 
   return (
-    <div className="meli-autocomplete">
+    <div className={style["meli-autocomplete"]}>
       <button
         onClick={handleFocus}
-        className={`meli-autocomplete__button ${
-          value?.label && "meli-autocomplete__button--value"
+        className={`${style["meli-autocomplete__button"]} ${
+          value?.label && style["meli-autocomplete__button--value"]
         }`}
         type="button"
       >
         {value?.label && value?.label !== "" ? value.label : placeholder}
       </button>
       {isFocused && (
-        <div className="meli-autocomplete__dropdown">
-          <div className="meli-autocomplete__dropdown-input">
-            <div className="meli-autocomplete__dropdown-input-search">
+        <div className={style["meli-autocomplete__dropdown"]}>
+          <div className={style["meli-autocomplete__dropdown-input"]}>
+            <div className={style["meli-autocomplete__dropdown-input-search"]}>
               <img
                 src="/assets/svg/search-icon.svg"
                 alt="Search"
-                className="meli-autocomplete__dropdown-input-search-icon"
+                className={style["meli-autocomplete__dropdown-input-search-icon"]}
               />
               <input
                 type="text"
                 autoFocus
-                className="meli-autocomplete__dropdown-input-search-field"
+                className={style["meli-autocomplete__dropdown-input-search-field"]}
                 value={search}
                 placeholder={searchPlaceholder}
                 onChange={(e) => handleSearchChange?.(e.target.value)}
@@ -78,7 +78,7 @@ const MeliAutocomplete: FC<MeliAutocompleteProps> = ({
           {filteredOptions.map((option) => (
             <button
               key={option.value}
-              className="meli-autocomplete__dropdown-option"
+              className={style["meli-autocomplete__dropdown-option"]}
               type="button"
               onClick={() => handleOptionSelect(option)}
             >
@@ -87,7 +87,7 @@ const MeliAutocomplete: FC<MeliAutocompleteProps> = ({
           ))}
 
           {filteredOptions.length === 0 && (
-            <div className="meli-autocomplete__dropdown-no-options">
+            <div className={style["meli-autocomplete__dropdown-no-options"]}>
               {noResultsText}
             </div>
           )}
