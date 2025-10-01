@@ -10,7 +10,7 @@ import {
   useContactStore,
 } from "@/services/store/useContactStore";
 import { useContactFormValidation } from "@/hooks/useContactFormValidation";
-import { useRouter } from 'next/compat/router'
+import { useRouter, useParams } from 'next/navigation'
 
 const Captcha = lazy(() => import("@components/captcha/Captcha"));
 
@@ -41,6 +41,8 @@ const ContactForm: FC = () => {
 
   //* Navigation
   const router = useRouter();
+  const params = useParams();
+  const locale = params?.locale as string || 'es-AR';
 
   //* Effects
   useEffect(() => {
@@ -72,6 +74,7 @@ const ContactForm: FC = () => {
 
     clearAllErrors();
     setIsSubmitting(true);
+    
     try {
       const validation = validateForm(contactData, captchaToken);
 
@@ -81,14 +84,13 @@ const ContactForm: FC = () => {
       }
 
       await actionsContactStore.updateContactData(contactData);
-
-      router?.replace("/purchase/finish-purchase");
+      router.push(`/${locale}/purchase/finish-purchase`);
     } catch (error) {
       console.error("Error updating contact data:", error);
       setGeneralError(t("errors.general.submit-error"));
     } finally {
-      setIsSubmitting(false);
-    }
+    setIsSubmitting(false);
+  }
   };
 
   const handleGoBack = () => {

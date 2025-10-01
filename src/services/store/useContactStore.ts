@@ -73,13 +73,16 @@ export const actionsContactStore = {
     const { updateContactData } = MeliUsersService();
     const defaultUserId = useContactStore.getState().defaultUserId;
     try {
-      await updateContactData(defaultUserId, {
+      const result = await updateContactData(defaultUserId, {
         fullname: contactData.fullname,
         address: contactData.address,
         country: contactData.country,
       });
+      useContactStore.setState({ contactData: result });
+      return result;
     } catch (error) {
       console.error("Error updating contact data:", error);
+      throw error;
     }
   },
 };
