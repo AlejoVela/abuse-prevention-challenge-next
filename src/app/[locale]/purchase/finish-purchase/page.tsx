@@ -10,6 +10,7 @@ import {
   useContactStore,
 } from "@/services/store/useContactStore";
 import { useTranslation } from "react-i18next";
+import Image from "next/image";
 
 
 const FinishPurchase: FC = () => {
@@ -38,9 +39,12 @@ const FinishPurchase: FC = () => {
           <p className={style["cards__title2"]}>{t("billing.title")}</p>
           <div className={style["card-summary"]}>
             <div className={style["card-summary__image"]}>
-              <img
+              <Image
                 className={style["card__image"]}
                 src="https://http2.mlstatic.com/storage/buyingflow-core-assets-web/bf-assets/svg/bf_v6_bill.svg"
+                alt="Billing"
+                width={24}
+                height={24}
               />
             </div>
             <div className={style["card-summary__content"]}>
@@ -55,9 +59,12 @@ const FinishPurchase: FC = () => {
           <p className={style["cards__title2"]}>{t("delivery.title")}</p>
           <div className={style["card-summary"]}>
             <div className={style["card-summary__image"]}>
-              <img
+              <Image
                 className={style["card__image"]}
                 src="https://http2.mlstatic.com/storage/buyingflow-core-assets-web/bf-assets/svg/bf_v6_gps_pin.svg"
+                alt="Delivery"
+                width={24}
+                height={24}
               />
             </div>
             <div className={style["card-summary__content"]}>
@@ -81,9 +88,12 @@ const FinishPurchase: FC = () => {
           <p className={style["cards__title2"]}>{t("payment.title")}</p>
           <div className={style["card-summary"]}>
             <div className={style["card-summary__image"]}>
-              <img
+              <Image
                 className={style["card__image"]}
                 src="https://http2.mlstatic.com/storage/buyingflow-core-assets-web/bf-assets/svg/bf_v6_master.svg"
+                alt="Payment"
+                width={24}
+                height={24}
               />
             </div>
             <div className={style["card-summary__content"]}>
