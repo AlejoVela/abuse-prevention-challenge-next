@@ -15,10 +15,10 @@ interface IContactStore {
 }
 
 const initialState: IContactStore = {
-  defaultUserId: process.env.NEXT_PUBLIC_DEFAULT_USER_ID,
+  defaultUserId: process.env.NEXT_PUBLIC_DEFAULT_USER_ID ?? '',
   countries: fallbackCountries,
   contactData: {
-    userId: process.env.NEXT_PUBLIC_DEFAULT_USER_ID,
+    userId: process.env.NEXT_PUBLIC_DEFAULT_USER_ID ?? '',
     fullname: "",
     country: { id: "", name: "" },
     address: "",
