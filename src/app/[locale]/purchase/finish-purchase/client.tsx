@@ -3,7 +3,7 @@
 import dynamic from "next/dynamic";
 
 const FinishPurchasePage = dynamic(
-  () => import("@/pages/finish-purchase/FinishPurchase"),
+  () => import("./FinishPurchase"),
   { ssr: false }
 );
 

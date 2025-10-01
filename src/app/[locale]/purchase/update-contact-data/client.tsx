@@ -3,7 +3,7 @@
 import dynamic from "next/dynamic";
 
 const UpdateContactDataPage = dynamic(
-  () => import("@/pages/update-contact-data/UpdateContactDataPage"),
+  () => import("./UpdateContactDataPage"),
   { ssr: false }
 );
 
