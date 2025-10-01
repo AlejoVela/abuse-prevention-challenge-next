@@ -1,7 +1,6 @@
 import path from "path";
 
 const nextConfig = {
-  distDir: "./dist",
   experimental: {
     optimizePackageImports: ["i18next", "react-i18next"],
   },
