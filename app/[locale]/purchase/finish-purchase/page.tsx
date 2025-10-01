@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
 import Header from "@/components/header/Header";
 import { useEffect, type FC } from "react";
 import style from "./page.module.scss";
 import MeliButton from "@/components/button/MeliButton";
-import { useRouter } from "next/compat/router";
+import { useParams, useRouter } from "next/navigation";
 import {
   actionsContactStore,
   useContactStore,
@@ -12,10 +12,11 @@ import {
 import { useTranslation } from "react-i18next";
 import Image from "next/image";
 
-
 const FinishPurchase: FC = () => {
   //* Navigation
   const router = useRouter();
+  const params = useParams();
+  const locale = (params?.locale as string) || "es-AR";
 
   //* Translation
   const { t } = useTranslation(["translation"], {
@@ -77,7 +78,7 @@ const FinishPurchase: FC = () => {
                 <a
                   className={style["card-summary__content-link"]}
                   onClick={() => {
-                    router?.replace("/update-contact-data");
+                    router.push(`/${locale}/purchase/update-contact-data`);
                   }}
                 >
                   {t("delivery.modify-delivery")}
@@ -111,7 +112,9 @@ const FinishPurchase: FC = () => {
         </div>
         <div className={style["amount-summary"]}>
           <div className={style["amount-summary__section"]}>
-            <p className={style["amount-summary__section-text"]}>{t("summary.title")}</p>
+            <p className={style["amount-summary__section-text"]}>
+              {t("summary.title")}
+            </p>
           </div>
           <div className={style["amount-summary__section"]}>
             <p className={style["amount-summary__section-text"]}>
@@ -130,7 +133,9 @@ const FinishPurchase: FC = () => {
             </p>
           </div>
           <div className={style["amount-summary__section"]}>
-            <p className={`${style["amount-summary__section-text"]} ${style["amount-summary__section-text--bold"]}`}>
+            <p
+              className={`${style["amount-summary__section-text"]} ${style["amount-summary__section-text--bold"]}`}
+            >
               <span>{t("summary.total")}</span>
               <span>
                 {t("summary.total-installments", {

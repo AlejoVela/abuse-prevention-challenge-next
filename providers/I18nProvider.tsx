@@ -1,27 +1,31 @@
-'use client'
+"use client";
 
-import { useEffect } from 'react'
-import { useParams } from 'next/navigation'
-import { I18nextProvider } from 'react-i18next'
-import i18n from '../services/i18n'
+import { useEffect, useState } from "react";
+import { useParams } from "next/navigation";
+import { I18nextProvider } from "react-i18next";
+import i18n from "../services/i18n";
 
 interface I18nProviderProps {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 export default function I18nProvider({ children }: I18nProviderProps) {
-  const params = useParams()
-  const locale = params?.locale as string || 'es-AR'
+  const params = useParams();
+  const locale = (params?.locale as string) || "es-AR";
+  const [isInitialized, setIsInitialized] = useState(false);
 
   useEffect(() => {
-    if (locale && i18n.language !== locale) {
-      i18n.changeLanguage(locale)
-    }
-  }, [locale])
+    const initializeI18n = async () => {
+      if (locale && i18n.language !== locale) {
+        await i18n.changeLanguage(locale);
+      }
+      setIsInitialized(true);
+    };
+
+    initializeI18n();
+  }, [locale]);
 
   return (
-    <I18nextProvider i18n={i18n}>
-      {children}
-    </I18nextProvider>
-  )
+    isInitialized && <I18nextProvider i18n={i18n}>{children}</I18nextProvider>
+  );
 }

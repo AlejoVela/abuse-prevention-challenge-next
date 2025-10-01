@@ -10,9 +10,8 @@ import {
   useContactStore,
 } from "@/services/store/useContactStore";
 import { useContactFormValidation } from "@/hooks/useContactFormValidation";
-import { useRouter, useParams } from 'next/navigation'
-import Captcha from '@components/captcha/Captcha';
-
+import { useRouter, useParams } from "next/navigation";
+import Captcha from "@components/captcha/Captcha";
 
 const ContactForm: FC = () => {
   //* translations
@@ -42,7 +41,7 @@ const ContactForm: FC = () => {
   //* Navigation
   const router = useRouter();
   const params = useParams();
-  const locale = params?.locale as string || 'es-AR';
+  const locale = (params?.locale as string) || "es-AR";
 
   //* Effects
   useEffect(() => {
@@ -74,7 +73,7 @@ const ContactForm: FC = () => {
 
     clearAllErrors();
     setIsSubmitting(true);
-    
+
     try {
       const validation = validateForm(contactData, captchaToken);
 
@@ -84,13 +83,16 @@ const ContactForm: FC = () => {
       }
 
       await actionsContactStore.updateContactData(contactData);
-      router.push(`/${locale}/purchase/finish-purchase`);
+      router.push(
+        `/${locale}/purchase/finish-purchase` +
+        `?previous_step=/${locale}/purchase/update-contact-data&token=${captchaToken}`
+      );
     } catch (error) {
       console.error("Error updating contact data:", error);
       setGeneralError(t("errors.general.submit-error"));
     } finally {
-    setIsSubmitting(false);
-  }
+      setIsSubmitting(false);
+    }
   };
 
   const handleGoBack = () => {
@@ -100,7 +102,9 @@ const ContactForm: FC = () => {
   return (
     <form className={style["contact-form"]} onSubmit={handleSubmit}>
       {validationErrors.general && (
-        <div className={`${style["contact-form__error"]} ${style["contact-form__error--general"]}`}>
+        <div
+          className={`${style["contact-form__error"]} ${style["contact-form__error--general"]}`}
+        >
           {validationErrors.general}
         </div>
       )}
@@ -151,7 +155,9 @@ const ContactForm: FC = () => {
       <div className={style["contact-form__captcha"]}>
         <Captcha onChange={handleCaptchaChange} onError={handleCaptchaError} />
         {validationErrors.captcha && (
-          <div className={style["contact-form__error"]}>{validationErrors.captcha}</div>
+          <div className={style["contact-form__error"]}>
+            {validationErrors.captcha}
+          </div>
         )}
       </div>
       <div className={style["contact-form__buttons"]}>

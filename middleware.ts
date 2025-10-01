@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 
-const locales = ['es-AR', 'en-US', 'br']
+const locales = ['es-AR', 'en-US', 'pt-BR']
 const defaultLocale = 'es-AR'
 
 export function middleware(request: NextRequest) {
@@ -18,7 +18,7 @@ export function middleware(request: NextRequest) {
     let detectedLocale = defaultLocale
     
     if (acceptLanguage.includes('en')) detectedLocale = 'en-US'
-    else if (acceptLanguage.includes('pt')) detectedLocale = 'br'
+    else if (acceptLanguage.includes('pt')) detectedLocale = 'pt-BR'
     
     return NextResponse.redirect(
       new URL(`/${detectedLocale}${pathname}`, request.url)

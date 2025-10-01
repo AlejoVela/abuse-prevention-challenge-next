@@ -7,10 +7,10 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-
   eslint: {
     ignoreDuringBuilds: true,
   },
+  productionBrowserSourceMaps: false,
   sassOptions: {
     includePaths: ["./"],
   },
@@ -28,6 +28,7 @@ const nextConfig = {
       "@utils": path.resolve("./utils"),
       "@tests": path.resolve("./tests"),
     };
+    
     return config;
   },
 };

@@ -1,29 +1,15 @@
-import I18nProvider from '@/providers/I18nProvider'
+import I18nProvider from "@/providers/I18nProvider";
 
 export async function generateStaticParams() {
-  return [
-    { locale: 'es-AR' },
-    { locale: 'en-US' }, 
-    { locale: 'br' }
-  ]
+  return [{ locale: "es-AR" }, { locale: "en-US" }, { locale: "pt-BR" }];
 }
 
 export default async function LocaleLayout({
   children,
-  params
+  params,
 }: {
-  children: React.ReactNode
-  params: Promise<{ locale: string }>
+  children: React.ReactNode;
+  params: Promise<{ locale: string }>;
 }) {
-  const { locale } = await params
-  
-  return (
-    <html lang={locale}>
-      <body>
-        <I18nProvider>
-          {children}
-        </I18nProvider>
-      </body>
-    </html>
-  )
+  return <I18nProvider>{children}</I18nProvider>;
 }
