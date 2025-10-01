@@ -10,24 +10,23 @@ const nextConfig = {
   },
 
   eslint: {
-    dirs: ["src"],
     ignoreDuringBuilds: true,
   },
   sassOptions: {
-    includePaths: ["./src"],
+    includePaths: ["./"],
   },
   webpack: (config) => {
     config.resolve.alias = {
       ...config.resolve.alias,
-      "@": path.resolve("./src"),
-      "@/app": path.resolve("./src/app"),
+      "@": path.resolve("./"),
+      "@/app": path.resolve("./app"),
       "@assets": path.resolve("./public/assets"),
       "@/assets": path.resolve("./public/assets"),
       "@public": path.resolve("./public"),
-      "@components": path.resolve("./src/components"),
-      "@pages": path.resolve("./src/app"),
-      "@services": path.resolve("./src/services"),
-      "@utils": path.resolve("./src/utils"),
+      "@components": path.resolve("./components"),
+      "@pages": path.resolve("./app"),
+      "@services": path.resolve("./services"),
+      "@utils": path.resolve("./utils"),
       "@tests": path.resolve("./tests"),
     };
     return config;

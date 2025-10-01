@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import '../../public/assets/styles/global.scss'
+import '@/public/assets/styles/global.scss'
 
 export const metadata: Metadata = {
   title: 'Abuse Prevention Challenge',

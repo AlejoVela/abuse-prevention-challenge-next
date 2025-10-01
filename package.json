@@ -10,10 +10,6 @@
     "lint": "next lint --fix",
     "type-check": "tsc --noEmit"
   },
-  "engines": {
-    "node": ">=18.0.0",
-    "npm": ">=8.0.0"
-  },
   "dependencies": {
     "i18next": "^25.5.2",
     "i18next-browser-languagedetector": "^8.2.0",

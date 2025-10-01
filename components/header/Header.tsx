@@ -1,6 +1,6 @@
 import type { FC } from "react";
 import style from "./Header.module.scss";
-import logo from "../../../public/assets/img/logo.png";
+import logo from "@/public/assets/img/logo.png";
 import Image from "next/image";
 
 const Header: FC = () => {
