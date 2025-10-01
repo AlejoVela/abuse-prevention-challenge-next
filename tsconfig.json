@@ -26,10 +26,10 @@
         "./src/app/*"
       ],
       "@assets/*": [
-        "./src/assets/*"
+        "./public/assets/*"
       ],
       "@public/*": [
-        "./src/public/*"
+        "./public/*"
       ],
       "@typings/*": [
         "./src/typings/*"
