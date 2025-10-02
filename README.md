@@ -27,6 +27,46 @@ npm run build
 npm start
 ```
 
+## Arquitectura
+
+### Estructura del Proyecto
+
+```
+app/                          # Next.js App Router
+├── [locale]/                 # Rutas internacionalizadas
+│   └── purchase/             # Flujo de compra
+│       ├── update-contact-data/
+│       └── finish-purchase/
+components/                   # Componentes reutilizables
+├── button/                   # MeliButton
+├── input/                    # MeliInput
+├── autocomplete/             # MeliAutocomplete
+├── captcha/                  # Google reCAPTCHA
+└── header/                   # Header con selector de idioma
+services/                     # Lógica de negocio
+├── api/                      # Servicios de API
+│   ├── MeliCountries.service.ts
+│   └── MeliUsersService.service.ts
+├── store/                    # Estado global (Zustand)
+│   └── useContactStore.ts
+└── i18n/                     # Configuración i18n
+hooks/                        # Custom hooks
+└── useContactFormValidation.tsx
+tests/                        # Tests unitarios
+├── app/                      # Tests de páginas
+├── components/               # Tests de componentes
+├── hooks/                    # Tests de hooks
+└── services/                 # Tests de servicios
+```
+
+### Patrones Arquitectónicos
+
+- **Feature-based organization**: Agrupación por funcionalidades
+- **Service Layer**: Abstracción de APIs y lógica de negocio
+- **Custom Hooks**: Encapsulación de lógica reutilizable
+- **Zustand Store**: Estado global reactivo y tipado
+- **Validation Layer**: Schemas Zod para validación consistente
+
 ## Funcionalidades
 
 - Formulario de datos de contacto con validación
