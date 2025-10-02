@@ -53,9 +53,9 @@ const ContactForm: FC = () => {
 
   useEffect(() => {
     if (captchaError != undefined && captchaError === "captcha_invalid") {
-      setGeneralError(t("errors.captcha-invalid"));
+      setGeneralError(t("errors.captcha.captcha-invalid"));
     }
-  }, [captchaError, setGeneralError, t]);
+  }, [captchaError, t]);
 
   const handleCountrySelect = (option: SelectOption) => {
     actionsContactStore.updateCountry(option);

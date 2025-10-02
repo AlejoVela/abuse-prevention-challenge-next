@@ -12,7 +12,6 @@ import {
 import { useTranslation } from "react-i18next";
 import Image from "next/image";
 import AnimatedCheckmark from "@/components/animated-checkmark/AnimatedCheckmark";
-import { GoogleCaptchaService } from "@/services/api";
 
 const FinishPurchase: FC = () => {
   //* Navigation
@@ -38,30 +37,12 @@ const FinishPurchase: FC = () => {
   }, []);
 
   useEffect(() => {
-    if (tokenCaptcha) {
-      console.log("Captcha token from URL:", tokenCaptcha);
-      //* validate on google
-      const validateCaptcha = async () => {
-        try {
-          const captchaService = GoogleCaptchaService();
-          const isValidToken = await captchaService.validateCaptcha(
-            tokenCaptcha
-          );
-
-          if (!isValidToken) {
-            router.push(
-              `/${locale}/purchase/update-contact-data?error=captcha_invalid`
-            );
-            console.error("Captcha validation failed");
-          }
-        } catch (error) {
-          console.error("Error validating captcha:", error);
-        }
-      };
-
-      validateCaptcha();
+    if (!tokenCaptcha || tokenCaptcha === "") {
+      router.replace(
+          `/${locale}/purchase/update-contact-data?error=captcha_invalid`
+        );
     }
-  }, [tokenCaptcha]);
+  }, [locale, router, tokenCaptcha]);
 
   return (
     <div className={style["finish-purchase"]}>
