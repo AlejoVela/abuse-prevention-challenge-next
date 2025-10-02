@@ -185,6 +185,14 @@
     width: 100%;
     gap: $spacing-lg;
 
+    @include mobile {
+      width: auto;
+      padding-block: $spacing-lg;
+      height: 72vh;
+      margin: $spacing-lg;
+      gap: $spacing-md;
+    }
+
     &-title {
       font-size: $font-size-xl;
       font-weight: $font-weight-bold;
@@ -197,11 +205,6 @@
       color: $text-secondary-color;
       margin: 0;
       line-height: 1.5;
-    }
-
-    @include mobile {
-      padding: $spacing-lg;
-      gap: $spacing-md;
     }
   }
 }
