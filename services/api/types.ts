@@ -15,3 +15,16 @@ export interface UpdateContactDataRequest {
   address?: string;
   country?: Country;
 }
+
+export interface CaptchaValidationRequest {
+  token: string;
+}
+
+export interface CaptchaValidationResponse {
+  success: boolean;
+  challenge_ts?: string;
+  hostname?: string;
+  score?: number;
+  action?: string;
+  error_codes?: string[];
+}

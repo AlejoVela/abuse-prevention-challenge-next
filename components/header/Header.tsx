@@ -2,7 +2,7 @@ import type { FC } from "react";
 import style from "./Header.module.scss";
 import logo from "@/public/assets/img/logo.png";
 import Image from "next/image";
-import LanguageSelector from "../../src/components/language-selector";
+import LanguageSelector from "@/components/language-selector";
 
 const Header: FC = () => {
   return (

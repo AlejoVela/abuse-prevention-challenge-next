@@ -32,7 +32,8 @@
         },
         "captcha": {
           "required": "Por favor, completa el captcha para continuar",
-          "error": "Error al cargar el captcha. Por favor, recarga la página e inténtalo de nuevo."
+          "error": "Error al cargar el captcha. Por favor, recarga la página e inténtalo de nuevo.",
+          "captcha-invalid": "El captcha no es válido. Por favor, inténtalo de nuevo."
         },
         "general": {
           "submit-error": "Ocurrió un error al actualizar los datos. Por favor, inténtalo de nuevo.",

@@ -132,6 +132,16 @@
         padding: $spacing-md $spacing-lg;
         border-bottom: 1px solid $border-light;
         gap: $spacing-sm;
+
+        &-checkmark {
+          display: flex;
+          width: 100%;
+          justify-content: center;
+          align-items: center;
+          margin-top: $spacing-md;
+          font-size: $font-size-lg;
+          gap: $spacing-sm;
+        }
         &:last-child {
           border-bottom: none;
         }

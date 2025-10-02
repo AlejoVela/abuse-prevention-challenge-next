@@ -1,0 +1,235 @@
+@use "@assets/styles/variables" as *;
+
+.animated-checkmark {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  
+  &--small {
+    width: 32px;
+    height: 32px;
+  }
+  
+  &--medium {
+    width: 64px;
+    height: 64px;
+  }
+  
+  &--large {
+    width: 96px;
+    height: 96px;
+  }
+}
+
+.checkmark-circle {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  &--animating {
+    animation: pulse 0.6s ease-in-out;
+  }
+}
+
+.checkmark-background {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #4ade80, #22c55e);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: scale(0);
+  animation: none;
+  
+  &--complete {
+    animation: scaleIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  }
+}
+
+.checkmark-svg {
+  width: 60%;
+  height: 60%;
+  
+  &--complete {
+    .checkmark-check {
+      animation: checkmark 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+    }
+  }
+}
+
+.checkmark-circle-outline {
+  stroke: #22c55e;
+  stroke-width: 2;
+  fill: none;
+  stroke-dasharray: 166;
+  stroke-dashoffset: 166;
+  
+  .checkmark-svg--complete & {
+    animation: circle 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+  }
+}
+
+.checkmark-check {
+  stroke: white;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+}
+
+// Efectos de partículas
+.particles-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: #4ade80;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+  @for $i from 1 through 8 {
+    &--#{$i} {
+      animation: particle#{$i} 0.8s ease-out forwards;
+    }
+  }
+}
+
+// Ondas de expansión
+.ripple {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  border: 2px solid #4ade80;
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 1;
+  
+  &--1 {
+    animation: ripple 0.6s ease-out forwards;
+  }
+  
+  &--2 {
+    animation: ripple 0.6s ease-out 0.1s forwards;
+  }
+  
+  &--3 {
+    animation: ripple 0.6s ease-out 0.2s forwards;
+  }
+}
+
+// Animaciones
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+@keyframes scaleIn {
+  0% { 
+    transform: scale(0); 
+    opacity: 0;
+  }
+  50% { 
+    transform: scale(1.1); 
+    opacity: 0.8;
+  }
+  100% { 
+    transform: scale(1); 
+    opacity: 1;
+  }
+}
+
+@keyframes circle {
+  0% { 
+    stroke-dashoffset: 166; 
+    opacity: 0;
+  }
+  50% { 
+    opacity: 1; 
+  }
+  100% { 
+    stroke-dashoffset: 0; 
+    opacity: 0;
+  }
+}
+
+@keyframes checkmark {
+  0% { 
+    stroke-dashoffset: 48; 
+  }
+  100% { 
+    stroke-dashoffset: 0; 
+  }
+}
+
+@keyframes ripple {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(4);
+    opacity: 0;
+  }
+}
+
+// Animaciones de partículas
+@keyframes particle1 {
+  0% { transform: translate(-50%, -50%) translate(0, 0) scale(0); opacity: 1; }
+  100% { transform: translate(-50%, -50%) translate(30px, -30px) scale(1); opacity: 0; }
+}
+
+@keyframes particle2 {
+  0% { transform: translate(-50%, -50%) translate(0, 0) scale(0); opacity: 1; }
+  100% { transform: translate(-50%, -50%) translate(42px, 0) scale(1); opacity: 0; }
+}
+
+@keyframes particle3 {
+  0% { transform: translate(-50%, -50%) translate(0, 0) scale(0); opacity: 1; }
+  100% { transform: translate(-50%, -50%) translate(30px, 30px) scale(1); opacity: 0; }
+}
+
+@keyframes particle4 {
+  0% { transform: translate(-50%, -50%) translate(0, 0) scale(0); opacity: 1; }
+  100% { transform: translate(-50%, -50%) translate(0, 42px) scale(1); opacity: 0; }
+}
+
+@keyframes particle5 {
+  0% { transform: translate(-50%, -50%) translate(0, 0) scale(0); opacity: 1; }
+  100% { transform: translate(-50%, -50%) translate(-30px, 30px) scale(1); opacity: 0; }
+}
+
+@keyframes particle6 {
+  0% { transform: translate(-50%, -50%) translate(0, 0) scale(0); opacity: 1; }
+  100% { transform: translate(-50%, -50%) translate(-42px, 0) scale(1); opacity: 0; }
+}
+
+@keyframes particle7 {
+  0% { transform: translate(-50%, -50%) translate(0, 0) scale(0); opacity: 1; }
+  100% { transform: translate(-50%, -50%) translate(-30px, -30px) scale(1); opacity: 0; }
+}
+
+@keyframes particle8 {
+  0% { transform: translate(-50%, -50%) translate(0, 0) scale(0); opacity: 1; }
+  100% { transform: translate(-50%, -50%) translate(0, -42px) scale(1); opacity: 0; }
+}

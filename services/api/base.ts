@@ -10,9 +10,10 @@ const defaultHeaders = {
 
 export const apiCall = async <T>(
   endpoint: string,
-  options: RequestInit = {}
+  options: RequestInit = {},
+  useBaseUrl = true,
 ): Promise<T> => {
-  const url = `${API_BASE_URL}${endpoint}`;
+  const url = useBaseUrl ? `${API_BASE_URL}${endpoint}` : endpoint;
 
   const config: RequestInit = {
     headers: { ...defaultHeaders, ...options.headers },

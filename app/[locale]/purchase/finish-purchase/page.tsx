@@ -1,22 +1,27 @@
 "use client";
 
 import Header from "@/components/header/Header";
-import { useEffect, type FC } from "react";
+import { useEffect, useState, type FC } from "react";
 import style from "./page.module.scss";
 import MeliButton from "@/components/button/MeliButton";
-import { useParams, useRouter } from "next/navigation";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 import {
   actionsContactStore,
   useContactStore,
 } from "@/services/store/useContactStore";
 import { useTranslation } from "react-i18next";
 import Image from "next/image";
+import AnimatedCheckmark from "@/components/animated-checkmark/AnimatedCheckmark";
+import { GoogleCaptchaService } from "@/services/api";
 
 const FinishPurchase: FC = () => {
   //* Navigation
   const router = useRouter();
   const params = useParams();
+  const searchParams = useSearchParams();
   const locale = (params?.locale as string) || "es-AR";
+  const previousStep = searchParams.get("previous_step");
+  const tokenCaptcha = searchParams.get("token");
 
   //* Translation
   const { t } = useTranslation(["translation"], {
@@ -25,11 +30,38 @@ const FinishPurchase: FC = () => {
 
   //* Store
   const contactData = useContactStore((state) => state.contactData);
+  const [finishPurchase, setFinishPurchase] = useState(false);
 
   //* Effects
   useEffect(() => {
     actionsContactStore.loadContactData();
   }, []);
+
+  useEffect(() => {
+    if (tokenCaptcha) {
+      console.log("Captcha token from URL:", tokenCaptcha);
+      //* validate on google
+      const validateCaptcha = async () => {
+        try {
+          const captchaService = GoogleCaptchaService();
+          const isValidToken = await captchaService.validateCaptcha(
+            tokenCaptcha
+          );
+
+          if (!isValidToken) {
+            router.push(
+              `/${locale}/purchase/update-contact-data?error=captcha_invalid`
+            );
+            console.error("Captcha validation failed");
+          }
+        } catch (error) {
+          console.error("Error validating captcha:", error);
+        }
+      };
+
+      validateCaptcha();
+    }
+  }, [tokenCaptcha]);
 
   return (
     <div className={style["finish-purchase"]}>
@@ -78,7 +110,9 @@ const FinishPurchase: FC = () => {
                 <a
                   className={style["card-summary__content-link"]}
                   onClick={() => {
-                    router.push(`/${locale}/purchase/update-contact-data`);
+                    router.push(
+                      previousStep ?? `/${locale}/purchase/update-contact-data`
+                    );
                   }}
                 >
                   {t("delivery.modify-delivery")}
@@ -102,7 +136,10 @@ const FinishPurchase: FC = () => {
                 {t("payment.bank-card", { bank: "xx", lastDigits: "2160" })}
               </p>
               <p className={style["card-summary__content-text"]}>
-                {t("payment.installments", { quantity: "1", amount: "55.831" })}{" "}
+                {t("payment.installments", {
+                  quantity: "1",
+                  amount: "55.831",
+                })}{" "}
                 <a className={style["card-summary__content-link"]}>
                   {t("payment.modify-installments")}
                 </a>
@@ -147,7 +184,16 @@ const FinishPurchase: FC = () => {
             <p className={style["amount-summary__section-subtext"]}>
               {t("summary.bank-info", { bank: "xx", lastDigits: "2160" })}
             </p>
-            <MeliButton text={t("buttons.confirm-purchase")} />
+            {finishPurchase ? (
+              <div className={style["amount-summary__section-checkmark"]}>
+                <AnimatedCheckmark />
+              </div>
+            ) : (
+              <MeliButton
+                onClick={() => setFinishPurchase(true)}
+                text={t("buttons.confirm-purchase")}
+              />
+            )}
           </div>
         </div>
       </div>

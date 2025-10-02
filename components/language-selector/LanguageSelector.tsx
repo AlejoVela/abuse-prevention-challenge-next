@@ -9,35 +9,38 @@ interface LanguageSelectorProps {
 const LanguageSelector: FC<LanguageSelectorProps> = ({ className }) => {
   const router = useRouter();
   const params = useParams();
-  const currentLocale = params?.locale as string || 'es-AR';
+  const currentLocale = (params?.locale as string) || "es-AR";
   const dropdownRef = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState(false);
   const [isNavigating, setIsNavigating] = useState(false);
 
-const languages = [
-  { code: 'es-AR', name: 'Español', flag: '🇦🇷' },
-  { code: 'en-US', name: 'English', flag: '🇺🇸' },
-  { code: 'pt-BR', name: 'Português', flag: '🇧🇷' },
-];  const currentLanguage = languages.find(lang => lang.code === currentLocale) || languages[0];
+  const languages = [
+    { code: "es-AR", name: "Español", flag: "🇦🇷" },
+    { code: "en-US", name: "English", flag: "🇺🇸" },
+    { code: "pt-BR", name: "Português", flag: "🇧🇷" },
+  ];
+  const currentLanguage =
+    languages.find((lang) => lang.code === currentLocale) || languages[0];
 
-  // Cerrar dropdown al hacer clic fuera
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
         setIsOpen(false);
       }
     };
 
     if (isOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener("mousedown", handleClickOutside);
     }
 
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [isOpen]);
 
-  // Cleanup al desmontar para evitar errores de DOM
   useEffect(() => {
     return () => {
       setIsOpen(false);
@@ -46,15 +49,15 @@ const languages = [
   }, []);
 
   const handleLanguageChange = (languageCode: string) => {
-    if (isNavigating || languageCode === currentLocale) return; // Prevenir múltiples navegaciones
-    
+    if (isNavigating || languageCode === currentLocale) return;
+
     setIsNavigating(true);
     setIsOpen(false);
-    
+
     try {
       const currentPath = window.location.pathname;
-      
-      const validLocales = ['es-AR', 'en-US', 'pt-BR'];
+
+      const validLocales = ["es-AR", "en-US", "pt-BR"];
       let pathWithoutLocale = currentPath;
       for (const locale of validLocales) {
         if (currentPath.startsWith(`/${locale}`)) {
@@ -62,21 +65,19 @@ const languages = [
           break;
         }
       }
-      
-      if (!pathWithoutLocale || pathWithoutLocale === '/') {
-        pathWithoutLocale = '/purchase/update-contact-data';
+
+      if (!pathWithoutLocale || pathWithoutLocale === "/") {
+        pathWithoutLocale = "/purchase/update-contact-data";
       }
-      
+
       const newPath = `/${languageCode}${pathWithoutLocale}`;
-      
-      console.log('Navigating from:', currentPath, 'to:', newPath);
-      
-      // Usar requestAnimationFrame para asegurar que el DOM esté listo
+
+      console.log("Navigating from:", currentPath, "to:", newPath);
       requestAnimationFrame(() => {
         router.push(newPath);
       });
     } catch (error) {
-      console.error('Error during navigation:', error);
+      console.error("Error during navigation:", error);
       setIsNavigating(false);
     }
   };
@@ -87,9 +88,9 @@ const languages = [
   };
 
   return (
-    <div 
+    <div
       ref={dropdownRef}
-      className={`${style["language-selector"]} ${className || ''}`}
+      className={`${style["language-selector"]} ${className || ""}`}
     >
       <button
         type="button"
@@ -105,7 +106,11 @@ const languages = [
         <span className={style["language-selector__name"]}>
           {currentLanguage.name}
         </span>
-        <span className={`${style["language-selector__arrow"]} ${isOpen ? style["language-selector__arrow--open"] : ''}`}>
+        <span
+          className={`${style["language-selector__arrow"]} ${
+            isOpen ? style["language-selector__arrow--open"] : ""
+          }`}
+        >
           ▼
         </span>
       </button>
@@ -117,7 +122,9 @@ const languages = [
               key={language.code}
               type="button"
               className={`${style["language-selector__option"]} ${
-                language.code === currentLocale ? style["language-selector__option--active"] : ''
+                language.code === currentLocale
+                  ? style["language-selector__option--active"]
+                  : ""
               }`}
               onClick={() => handleLanguageChange(language.code)}
             >

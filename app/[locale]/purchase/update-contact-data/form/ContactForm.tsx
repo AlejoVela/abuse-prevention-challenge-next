@@ -1,4 +1,4 @@
-import { useEffect, type FC } from "react";
+import { use, useEffect, type FC } from "react";
 import style from "./ContactForm.module.scss";
 import MeliInput from "@/components/input/MeliInput";
 import MeliButton from "@/components/button/MeliButton";
@@ -10,7 +10,7 @@ import {
   useContactStore,
 } from "@/services/store/useContactStore";
 import { useContactFormValidation } from "@/hooks/useContactFormValidation";
-import { useRouter, useParams } from "next/navigation";
+import { useRouter, useParams, useSearchParams } from "next/navigation";
 import Captcha from "@components/captcha/Captcha";
 
 const ContactForm: FC = () => {
@@ -41,13 +41,21 @@ const ContactForm: FC = () => {
   //* Navigation
   const router = useRouter();
   const params = useParams();
+  const searchParams = useSearchParams();
   const locale = (params?.locale as string) || "es-AR";
+  const captchaError = searchParams.get("error");
 
   //* Effects
   useEffect(() => {
     actionsContactStore.loadCountries();
     actionsContactStore.loadContactData();
   }, []);
+
+  useEffect(() => {
+    if (captchaError != undefined && captchaError === "captcha_invalid") {
+      setGeneralError(t("errors.captcha-invalid"));
+    }
+  }, [captchaError, setGeneralError, t]);
 
   const handleCountrySelect = (option: SelectOption) => {
     actionsContactStore.updateCountry(option);
@@ -85,7 +93,7 @@ const ContactForm: FC = () => {
       await actionsContactStore.updateContactData(contactData);
       router.push(
         `/${locale}/purchase/finish-purchase` +
-        `?previous_step=/${locale}/purchase/update-contact-data&token=${captchaToken}`
+          `?previous_step=/${locale}/purchase/update-contact-data&token=${captchaToken}`
       );
     } catch (error) {
       console.error("Error updating contact data:", error);
