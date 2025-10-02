@@ -74,3 +74,6 @@ tests/                        # Tests unitarios
 - Soporte multiidioma
 - Flujo de compra completo
 - Cobertura de tests unitarios
+
+## Cobertura
+<img width="1880" height="545" alt="imagen" src="https://github.com/user-attachments/assets/802d46c0-e388-45eb-ba36-55fb710bb3ed" />
