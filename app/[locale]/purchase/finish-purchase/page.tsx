@@ -29,7 +29,10 @@ const FinishPurchase: FC = () => {
 
   //* Store
   const contactData = useContactStore((state) => state.contactData);
-  const [finishPurchase, setFinishPurchase] = useState(false);
+
+  //* State
+  const [isConfirmed, setIsConfirmed] = useState(false);
+  const [isProcessing, setIsProcessing] = useState(false);
 
   //* Effects
   useEffect(() => {
@@ -39,10 +42,51 @@ const FinishPurchase: FC = () => {
   useEffect(() => {
     if (!tokenCaptcha || tokenCaptcha === "") {
       router.replace(
-          `/${locale}/purchase/update-contact-data?error=captcha_invalid`
-        );
+        `/${locale}/purchase/update-contact-data?error=captcha_invalid`
+      );
     }
   }, [locale, router, tokenCaptcha]);
+
+  const handleConfirmPurchase = async () => {
+    setIsProcessing(true);
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+
+    setIsProcessing(false);
+    setIsConfirmed(true);
+  };
+
+  const handleCheckmarkComplete = () => {
+    setTimeout(() => {
+      console.log("Compra confirmada exitosamente!");
+    }, 1000);
+  };
+
+  if (isConfirmed) {
+    return (
+      <div className={style["finish-purchase"]}>
+        <Header />
+        <div className={style["finish-purchase__container"]}>
+          <div className={style["finish-purchase__success"]}>
+            <AnimatedCheckmark
+              size="large"
+              duration={1500}
+              onComplete={handleCheckmarkComplete}
+            />
+            <h2 className={style["finish-purchase__success-title"]}>
+              {t("success.title")}
+            </h2>
+            <p className={style["finish-purchase__success-message"]}>
+              {t("success.message")}
+            </p>
+            <MeliButton
+              text={t("buttons.continue-shopping")}
+              onClick={() => (window.location.href = "/")}
+            />
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={style["finish-purchase"]}>
@@ -165,16 +209,15 @@ const FinishPurchase: FC = () => {
             <p className={style["amount-summary__section-subtext"]}>
               {t("summary.bank-info", { bank: "xx", lastDigits: "2160" })}
             </p>
-            {finishPurchase ? (
-              <div className={style["amount-summary__section-checkmark"]}>
-                <AnimatedCheckmark />
-              </div>
-            ) : (
-              <MeliButton
-                onClick={() => setFinishPurchase(true)}
-                text={t("buttons.confirm-purchase")}
-              />
-            )}
+            <MeliButton
+              text={
+                isProcessing
+                  ? t("buttons.processing")
+                  : t("buttons.confirm-purchase")
+              }
+              onClick={handleConfirmPurchase}
+              disabled={isProcessing}
+            />
           </div>
         </div>
       </div>

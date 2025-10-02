@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { useRouter, useParams, useSearchParams } from 'next/navigation';
 import { useTranslation } from 'react-i18next';
 import FinishPurchase from '@/app/[locale]/purchase/finish-purchase/page';
@@ -18,8 +18,8 @@ jest.mock('@/components/animated-checkmark/AnimatedCheckmark', () => {
   };
 });
 jest.mock('@/components/button/MeliButton', () => {
-  return function MockMeliButton({ onClick, text }: any) {
-    return <button onClick={onClick} data-testid="meli-button">{text}</button>;
+  return function MockMeliButton({ onClick, text, disabled }: any) {
+    return <button onClick={onClick} data-testid="meli-button" disabled={disabled}>{text}</button>;
   };
 });
 jest.mock('next/image', () => {
@@ -100,13 +100,23 @@ describe('FinishPurchase', () => {
     expect(screen.getByText('123 Main St, United States')).toBeInTheDocument();
   });
 
-  it('should handle confirm purchase button click', () => {
+  it('should handle confirm purchase button click', async () => {
     render(<FinishPurchase />);
     
     const confirmButton = screen.getByTestId('meli-button');
-    fireEvent.click(confirmButton);
+    expect(confirmButton).toHaveTextContent('buttons.confirm-purchase');
     
-    expect(screen.getByTestId('animated-checkmark')).toBeInTheDocument();
+    fireEvent.click(confirmButton);
+
+    expect(confirmButton).toHaveTextContent('buttons.processing');
+    expect(confirmButton).toBeDisabled();
+    
+    await waitFor(() => {
+      expect(screen.getByTestId('animated-checkmark')).toBeInTheDocument();
+    }, { timeout: 3000 });
+    
+    expect(screen.getByText('success.title')).toBeInTheDocument();
+    expect(screen.getByText('success.message')).toBeInTheDocument();
   });
 
   it('should navigate back when modify delivery is clicked', () => {

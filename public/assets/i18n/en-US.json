@@ -70,7 +70,13 @@
         "bank-info": "{{bank}} Bank. **** {{lastDigits}}"
       },
       "buttons": {
-        "confirm-purchase": "Confirm purchase"
+        "confirm-purchase": "Confirm purchase",
+        "processing": "Processing...",
+        "continue-shopping": "Continue shopping"
+      },
+      "success": {
+        "title": "Purchase confirmed!",
+        "message": "Your order has been processed successfully. You will receive a confirmation email shortly."
       }
     }
   }
